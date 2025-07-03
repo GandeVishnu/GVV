@@ -91,7 +91,7 @@ $(document).ready(function () {
 });
 
 
-const scriptURL = import.meta.env.VITE_SCRIPT_URL;
+VITE_SCRIPT_URL="https://script.google.com/macros/s/AKfycbw3LfvWxC4o3U9qg1OEjOWXV-_d8Syg76I7aQkIRqKEKrcavZewy7PAgGwmBVKyP73e/exec"
 const form = document.getElementById("contact-form");
 const inputs = form.querySelectorAll("input, textarea");
 const button = form.querySelector("button");
