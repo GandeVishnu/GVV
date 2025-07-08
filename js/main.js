@@ -15,7 +15,7 @@ $(document).ready(function () {
 
   // Typing Animation
   const typingAnimationElement = document.getElementById('typing-animation');
-  const typingTexts = ['Software Engineer', 'Data Analyst', 'Data Visualization Expert'];
+  const typingTexts = ['Data Analyst', 'Data Visualization Expert','Software Engineer','Front End Developer'];
   let textIndex = 0;
   let charIndex = 0;
 
