@@ -6,6 +6,7 @@
 body {
   background: #000000;
   color: #ffffff;
+  overflow-x:hidden;
 }
 #bord{
   border-width: 2px;
@@ -33,9 +34,7 @@ body {
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
 }
 
-.shadow-glass {
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
-}
+
 
 /* Navbar Styles */
 .navbar {
@@ -65,7 +64,16 @@ body {
   flex-direction: row;
   align-items: center;
 }
-
+.nav-link span::after{
+    content:"";
+    position:absolute;
+    left:0;
+    bottom:-4px;
+    width:0;
+    height:2px;
+    background:#6366f1;
+    transition:width .3s ease;
+}
 @media (max-width: 767px) {
   .navbar-nav {
     flex-direction: row;
@@ -81,6 +89,20 @@ body {
   .navbar {
     padding: 0.5rem 0;
   }
+}
+
+img{
+    max-width:100%;
+    height:auto;
+    display:block;
+}
+
+button{
+    cursor:pointer;
+}
+
+a{
+    text-decoration:none;
 }
 
 /* Contact Section */
@@ -171,4 +193,99 @@ section::before {
 
 section:hover::before {
   transform: translateY(0);
+}
+/* ================= Contact Modal ================= */
+
+#contactModal {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity .3s ease, visibility .3s ease;
+        z-index:9999;
+
+}
+
+#contactModal.flex {
+    opacity: 1;
+    visibility: visible;
+}
+
+#contactModal > div {
+    transform: scale(.9);
+    transition: transform .3s ease;
+
+    /* Scroll Settings */
+    max-height: 90vh;
+    overflow-y: auto;
+
+    /* Hide Scrollbar - Firefox */
+    scrollbar-width: none;
+
+    /* Hide Scrollbar - IE */
+    -ms-overflow-style: none;
+}
+
+/* Hide Scrollbar - Chrome, Edge, Safari */
+#contactModal > div::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+    display: none;
+}
+
+#contactModal.flex > div {
+    transform: scale(1);
+}
+
+/* Icon Animation */
+
+#contactModal a i,
+#contactModal button i {
+    transition: transform .3s ease;
+}
+
+#contactModal a:hover i,
+#contactModal button:hover i {
+    transform: scale(1.15);
+}
+
+/* Card Hover */
+
+#contactModal a,
+#contactModal button {
+    transition: all .25s ease;
+}
+
+#contactModal a:hover,
+#contactModal button:hover{
+    transform:translateY(-2px) scale(1.01);
+}
+
+/* Mobile */
+
+@media (max-width:640px) {
+
+    #contactModal {
+        padding: 1rem;
+    }
+
+    #contactModal > div {
+        width: 100%;
+        max-width: 100%;
+        margin: auto;
+        padding: 1.5rem;
+        max-height: 85vh;
+    }
+
+    #contactModal h2 {
+        font-size: 1.6rem;
+    }
+
+    #contactModal p {
+        font-size: .95rem;
+    }
+
+    #contactModal a,
+    #contactModal button {
+        padding: 1rem;
+    }
+
 }
