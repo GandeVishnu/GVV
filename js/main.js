@@ -15,7 +15,7 @@ $(document).ready(function () {
 
   // Typing Animation
   const typingAnimationElement = document.getElementById('typing-animation');
-  const typingTexts = ['Data Analyst', 'Data Visualization Expert','Software Engineer','Front End Developer'];
+  const typingTexts = [  'Workday Adaptive Planning Developer', 'Data Analyst', 'Business Analyst','Power BI Developer','Software Engineer','Web Developer'];
   let textIndex = 0;
   let charIndex = 0;
 
@@ -84,43 +84,93 @@ $(document).ready(function () {
     'max-glare': 0.3,
   });
 
-  // Contact Form Submission (Placeholder)
-  document.getElementById('contact-form').addEventListener('submit', (e) => {
-    e.preventDefault();
-  });
 });
 
 
-const scriptURL = 'https://script.google.com/macros/s/AKfycbw3LfvWxC4o3U9qg1OEjOWXV-_d8Syg76I7aQkIRqKEKrcavZewy7PAgGwmBVKyP73e/exec';
 
-const form = document.getElementById("contact-form");
-const inputs = form.querySelectorAll("input, textarea");
-const button = form.querySelector("button");
 
-form.addEventListener("submit", async (e) => {
-  e.preventDefault();
+const btn = document.getElementById("toggleSkills");
 
-  const data = {};
-  inputs.forEach(input => {
-    data[input.name] = input.value;
-  });
+btn.addEventListener("click", function () {
 
-  button.disabled = true;
-  button.textContent = "Sending...";
+    const skills = document.querySelectorAll(".skill-extra");
+    const expanded = btn.innerText === "Show Less";
 
-  try {
-    await fetch(scriptURL, {
-      method: "POST",
-      mode: "no-cors",
-      body: JSON.stringify(data),
-      headers: { "Content-Type": "application/json" }
+    skills.forEach(skill => {
+        if (expanded) {
+            skill.classList.add("hidden");
+            skill.classList.remove("flex");
+        } else {
+            skill.classList.remove("hidden");
+            skill.classList.add("flex");
+        }
     });
-  alert("✅ Message sent successfully!");
-    form.reset();
-  } catch (err) {
-    alert("❌ Error: " + err.message);
-  } finally {
-    button.disabled = false;
-    button.textContent = "Send Message";
-  }
+
+    btn.innerText = expanded ? "View All Skills" : "Show Less";
+
 });
+
+// ================= CONTACT MODAL =================
+
+const contactBtn = document.getElementById("contactBtn");
+const contactModal = document.getElementById("contactModal");
+const closeModal = document.getElementById("closeModal");
+const copyEmail = document.getElementById("copyEmail");
+
+if (contactBtn && contactModal && closeModal) {
+
+    contactBtn.addEventListener("click", () => {
+        contactModal.classList.remove("hidden");
+        contactModal.classList.add("flex");
+    });
+
+    closeModal.addEventListener("click", () => {
+        contactModal.classList.add("hidden");
+        contactModal.classList.remove("flex");
+    });
+
+    window.addEventListener("click", (e) => {
+        if (e.target === contactModal) {
+            contactModal.classList.add("hidden");
+            contactModal.classList.remove("flex");
+        }
+    });
+
+    document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") {
+            contactModal.classList.add("hidden");
+            contactModal.classList.remove("flex");
+        }
+    });
+
+    if (copyEmail) {
+
+        copyEmail.addEventListener("click", async () => {
+
+            try {
+
+                await navigator.clipboard.writeText("gandevishnu2002@gmail.com");
+
+                copyEmail.innerHTML =
+                    '<i class="fas fa-check"></i> Email Copied!';
+
+                setTimeout(() => {
+
+                    copyEmail.innerHTML =
+                        '<i class="fas fa-copy"></i> Copy Email Address';
+
+                }, 2000);
+
+            } catch (err) {
+
+                alert("Unable to copy email.");
+
+            }
+
+        });
+
+    }
+
+}
+
+
